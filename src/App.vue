@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <a class="button is-primary" @click="openModal">Primary</a>
+    <h2 style="position:absolute;left:10%;top:1%;">Kanban</h2>
+    <a class="button is-primary" style="position:absolute;right:10%;top:1%;" @click="openModal">
+      Add
+    </a>
     <div class="columns is-desktop">
       <card-board color="card-back-log" title="Back-Log" :dataCard="cardBackLog"></card-board>
       <card-board color="card-to-do" title="To-Do" :dataCard="cardToDo"></card-board>

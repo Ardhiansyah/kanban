@@ -44,6 +44,9 @@ export default new Vuex.Store({
     changeStatusCard(context, value) {
       db.child(value.key).update({ status: value.data });
     },
+    removeCard(context, value) {
+      db.child(value).remove();
+    },
     listenCardData(context) {
       db.on('value', (snapshot) => {
         const array = [];

@@ -15,24 +15,41 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a @click="left(detailCard.status, detailCard.key)" class="card-footer-item">Left</a>
-      <a href="#" class="card-footer-item">Delete</a>
-      <a @click="right(detailCard.status, detailCard.key)" class="card-footer-item">Right</a>
+      <a id="left-footer"
+        @click="left(detailCard.status, detailCard.key)" class="card-footer-item" v-if="button !== 'Back-Log'">
+        <i class="fa fa-chevron-left" style="color: black;"></i>
+      </a>
+      <a id="middle-footer" @click="remove(detailCard.key)" class="card-footer-item">
+        <i class="fa fa-remove" style="color: red;"></i>
+      </a>
+      <a id="right-footer"
+        @click="right(detailCard.status, detailCard.key)" class="card-footer-item" v-if="button !== 'Done'">
+        <i class="fa fa-chevron-right" style="color: black;"></i>
+      </a>
     </footer>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['detailCard'],
+  props: ['detailCard', 'button'],
   name: 'CardItem',
   methods: {
     right(value, key) {
       this.$store.dispatch('changeStatusCard', { data: value + 1, key });
     },
+    remove(key) {
+      this.$store.dispatch('removeCard', key);
+    },
     left(value, key) {
       this.$store.dispatch('changeStatusCard', { data: value - 1, key });
     },
+  },
+  created() {
+      console.log(this.button);
+      // document.getElementById('left-footer').style.visibility = 'hidden';
+    if (this.button === 'Back-Log') {
+    }
   },
 };
 </script>
